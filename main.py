@@ -58,7 +58,7 @@ targets = [
     ("AWS", "CHINA", "cn-northwest-1", "Ningxia", "161.189.0.253")
 ]
 
-print('Start ping...')
+# print('Start ping...')
 
 jobs = list()
 
@@ -66,7 +66,7 @@ for t in targets:
     p = subprocess.Popen("ping -c 10 {}".format(t[4]), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     jobs.append({"info": t, "job": p})
 
-print("Wait for ping finish...")
+# print("Wait for ping finish...")
 
 for job in jobs:
     job["job"].wait()
@@ -83,7 +83,7 @@ for job in jobs:
     })
     del job["job"]
 
-print("Ping finished")
+# print("Ping finished")
 
 table = PrettyTable()
 table.field_names = ('Vendor', 'Region', 'RegionId', 'Location', 'Ip', 'Send', 'Rec', 'Lost', 'Min', 'Max', 'Avg')
