@@ -63,7 +63,7 @@ targets = [
 jobs = list()
 
 for t in targets:
-    p = subprocess.Popen("ping -c 10 {}".format(t[4]), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    p = subprocess.Popen("LANG=C ping -c 10 {}".format(t[4]), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     jobs.append({"info": t, "job": p})
 
 # print("Wait for ping finish...")
@@ -91,7 +91,7 @@ table.field_names = ('Vendor', 'Region', 'RegionId', 'Location', 'Ip', 'Send', '
 # mac '10 packets transmitted, 10 packets received, 0.0% packet loss',
 # linux '3 packets transmitted, 3 received, 0% packet loss, time 2003ms'
 find_lost = re.compile(
-    r'^(?P<send>\d+) packets transmitted, (?P<rec>\d+) packets received, (?P<lost>\d+(?:\.\d+)?%) packet loss.*'
+    r'^(?P<send>\d+) packets transmitted, (?P<rec>\d+) (?:packets )?received, (?P<lost>\d+(?:\.\d+)?%) packet loss.*'
 )
 
 # mac 'round-trip min/avg/max/stddev = 8.808/10.074/13.203/1.458 ms'
